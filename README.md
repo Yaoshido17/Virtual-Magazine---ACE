@@ -13,7 +13,7 @@ Abre `index.html` en Chrome o Edge. Todos los recursos están incluidos; funcion
 - `assets/app.js`: navegación, miniaturas, zoom y pantalla completa.
 - `assets/pages/1.webp` a `6.webp` y `7.svg`: páginas de la revista en su orden original.
 
-Para actualizar el contenido, sustituye las imágenes manteniendo sus nombres. Para añadir páginas, agrega su ruta a la lista PAGES en assets/app.js. La navegación, las miniaturas y las hojas se ajustan a la cantidad de páginas, tanto par como impar.
+Para actualizar el contenido, sustituye las imágenes manteniendo sus nombres. Para añadir páginas, agrega su ruta a la lista CONTENT_PAGES en assets/app.js. La navegación, las miniaturas y las hojas se ajustan a la cantidad de páginas, tanto par como impar.
 
 En GitHub Desktop: usa Fetch origin y Pull origin antes de editar, revisa los cambios, crea un commit y pulsa Push origin. Cada commit conserva una versión recuperable.
 
@@ -28,4 +28,6 @@ Páginas proporcionadas por el usuario. Se conserva el diseño de la revista ori
 
 ## Relato añadido
 
-La página 7 contiene «Not Everything Is as It Seems», de Jhon Gómez. El texto corregido y editable está en `content/not-everything-is-as-it-seems.md`; el diseño vectorial está en `assets/pages/7.svg`. Si se edita el relato, también debe actualizarse su diseño SVG.
+La página 6 contiene «Not Everything Is as It Seems», de Jhon Gómez. El texto corregido y editable está en `content/not-everything-is-as-it-seems.md`; el diseño vectorial está en `assets/pages/7.svg`. Si se edita el relato, también debe actualizarse su diseño SVG.
+
+Las referencias (`assets/pages/6.webp`) se mantienen siempre al final mediante REFERENCES_PAGE. Añade nuevas páginas de contenido a CONTENT_PAGES; el orden de lectura no depende de los nombres de archivo.

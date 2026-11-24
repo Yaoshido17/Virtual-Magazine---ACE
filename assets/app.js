@@ -1,5 +1,8 @@
 
-const PAGES=["assets/pages/1.webp", "assets/pages/2.webp", "assets/pages/3.webp", "assets/pages/4.webp", "assets/pages/5.webp", "assets/pages/6.webp", "assets/pages/7.svg"];
+// Añade nuevos artículos a CONTENT_PAGES; las referencias siempre cierran la revista.
+const CONTENT_PAGES=["assets/pages/1.webp", "assets/pages/2.webp", "assets/pages/3.webp", "assets/pages/4.webp", "assets/pages/5.webp", "assets/pages/7.svg"];
+const REFERENCES_PAGE="assets/pages/6.webp";
+const PAGES=[...CONTENT_PAGES.filter(path=>path!==REFERENCES_PAGE),REFERENCES_PAGE];
 const $=id=>document.getElementById(id), book=$('book'), mq=matchMedia('(max-width:640px)');let step=0,page=0,busy=false,zoomPage=0,previousFocus=null;
 const PAGE_COUNT=PAGES.length, SHEET_COUNT=Math.ceil(PAGE_COUNT/2), LAST_STEP=Math.floor(PAGE_COUNT/2);
 function pageStep(p){return Math.ceil(p/2)}
