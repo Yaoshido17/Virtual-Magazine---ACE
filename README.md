@@ -1,6 +1,6 @@
 # A.C.E — Revista virtual
 
-Academic Collection of Endeavors. Revista de siete páginas con animación 3D al pasar las hojas, vista móvil, miniaturas, zoom y navegación con teclado.
+Academic Collection of Endeavors. Revista de ocho páginas con animación 3D al pasar las hojas, vista móvil, miniaturas, zoom y navegación con teclado.
 
 ## Abrir la revista
 
@@ -32,3 +32,6 @@ La página 6 contiene «Not Everything Is as It Seems», de Jhon Gómez. El text
 
 Las referencias (`assets/pages/references.svg`) se mantienen siempre al final mediante REFERENCES_PAGE. Añade nuevas páginas de contenido a CONTENT_PAGES; el orden de lectura no depende de los nombres de archivo.
 \nLa bibliografía está en `content/references.json`. Su diseño en `assets/pages/references.svg` mantiene siete entradas en orden alfabético. `references.html` ofrece una versión de texto con enlaces; se abre desde «Abrir enlaces de las fuentes» en la vista ampliada. Mantén actualizados estos archivos cuando cambien las referencias.\n
+## Segundo relato
+
+La página 7 contiene «The Courage to Speak Up», de Nicolas Castañeda. Se conserva el texto proporcionado. El original editable está en `content/the-courage-to-speak-up.md` y el diseño en `assets/pages/the-courage-to-speak-up.svg`. Las referencias siguen al final, como página 8.
