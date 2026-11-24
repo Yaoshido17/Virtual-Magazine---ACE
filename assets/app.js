@@ -1,7 +1,7 @@
 
 // Añade nuevos artículos a CONTENT_PAGES; las referencias siempre cierran la revista.
 const CONTENT_PAGES=["assets/pages/1.webp", "assets/pages/2.webp", "assets/pages/3.webp", "assets/pages/4.webp", "assets/pages/5.webp", "assets/pages/7.svg"];
-const REFERENCES_PAGE="assets/pages/6.webp";
+const REFERENCES_PAGE="assets/pages/references.svg";
 const PAGES=[...CONTENT_PAGES.filter(path=>path!==REFERENCES_PAGE),REFERENCES_PAGE];
 const $=id=>document.getElementById(id), book=$('book'), mq=matchMedia('(max-width:640px)');let step=0,page=0,busy=false,zoomPage=0,previousFocus=null;
 const PAGE_COUNT=PAGES.length, SHEET_COUNT=Math.ceil(PAGE_COUNT/2), LAST_STEP=Math.floor(PAGE_COUNT/2);
@@ -40,6 +40,14 @@ const zoomStage=document.createElement('div');
 zoomStage.className='zoom-stage';
 $('zoomImg').before(zoomStage);
 zoomStage.append($('zoomImg'));
+const referenceLinks=document.createElement('a');
+referenceLinks.href='references.html';
+referenceLinks.target='_blank';
+referenceLinks.rel='noopener noreferrer';
+referenceLinks.textContent='Abrir enlaces de las fuentes ↗';
+referenceLinks.hidden=true;
+referenceLinks.style.cssText='color:#e0bd7b;font-size:14px;text-underline-offset:4px;margin:0 auto 16px';
+zoomStage.before(referenceLinks);
 let zoomTurning=false,zoomTurnId=0,zoomAnimation=null,zoomSheet=null;
 function resetZoomTurn(){
   zoomTurnId++;
@@ -95,11 +103,11 @@ async function turnZoom(dir){
   showZoom();
 }
 
-function showZoom(){ $('zoomImg').src=PAGES[zoomPage];$('zoomImg').alt=`Página ${zoomPage+1} ampliada`;$('zoomCounter').textContent=`${zoomPage+1} / ${PAGE_COUNT}`;$('zoomPrev').disabled=zoomPage===0;$('zoomNext').disabled=zoomPage===PAGE_COUNT-1;$('zoom').scrollTop=0}
+function showZoom(){ referenceLinks.hidden=PAGES[zoomPage]!==REFERENCES_PAGE;$('zoomImg').src=PAGES[zoomPage];$('zoomImg').alt=`Página ${zoomPage+1} ampliada`;$('zoomCounter').textContent=`${zoomPage+1} / ${PAGE_COUNT}`;$('zoomPrev').disabled=zoomPage===0;$('zoomNext').disabled=zoomPage===PAGE_COUNT-1;$('zoom').scrollTop=0}
 function openZoom(p=page){previousFocus=document.activeElement;zoomPage=p;$('zoom').hidden=false;document.body.style.overflow='hidden';showZoom();$('closeZoom').focus()}
 function closeZoom(){resetZoomTurn();go(zoomPage);$('zoom').hidden=true;document.body.style.overflow='';previousFocus?.focus()}
 $('enlarge').onclick=()=>openZoom();$('mobile').onclick=()=>openZoom();$('mobile').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openZoom()}};$('closeZoom').onclick=closeZoom;$('zoomPrev').onclick=()=>turnZoom(-1);$('zoomNext').onclick=()=>turnZoom(1);
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch(e){$('fullscreen').textContent='No disponible';}};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('zoom').hidden)closeZoom();else if(!$('drawer').hidden)toggleDrawer(false)}if(!$('zoom').hidden){if(e.key==='ArrowRight'||e.key==='ArrowLeft')e.preventDefault();if(e.key==='ArrowRight')$('zoomNext').click();if(e.key==='ArrowLeft')$('zoomPrev').click();if(e.key==='Tab'){const focusable=[...$('zoom').querySelectorAll('button:not(:disabled)')];const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}return}if(e.key==='ArrowRight'){e.preventDefault();turn(1)}if(e.key==='ArrowLeft'){e.preventDefault();turn(-1)}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('zoom').hidden)closeZoom();else if(!$('drawer').hidden)toggleDrawer(false)}if(!$('zoom').hidden){if(e.key==='ArrowRight'||e.key==='ArrowLeft')e.preventDefault();if(e.key==='ArrowRight')$('zoomNext').click();if(e.key==='ArrowLeft')$('zoomPrev').click();if(e.key==='Tab'){const focusable=[...$('zoom').querySelectorAll('button:not(:disabled), a[href]:not([hidden])')];const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}return}if(e.key==='ArrowRight'){e.preventDefault();turn(1)}if(e.key==='ArrowLeft'){e.preventDefault();turn(-1)}});
 let startX=0,startY=0;$('mobile').addEventListener('touchstart',e=>{startX=e.touches[0].clientX;startY=e.touches[0].clientY},{passive:true});$('mobile').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){turn(dx<0?1:-1);e.preventDefault()}},{passive:false});render();
 

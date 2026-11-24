@@ -11,7 +11,7 @@ Abre `index.html` en Chrome o Edge. Todos los recursos están incluidos; funcion
 - `index.html`: estructura y textos de los controles.
 - `assets/style.css`: colores, distribución, diseño móvil y animación.
 - `assets/app.js`: navegación, miniaturas, zoom y pantalla completa.
-- `assets/pages/1.webp` a `6.webp` y `7.svg`: páginas de la revista en su orden original.
+- `assets/pages/1.webp` a `5.webp`: páginas originales de contenido.\n- `assets/pages/7.svg`: relato (página 6).\n- `assets/pages/references.svg`: referencias (última página).
 
 Para actualizar el contenido, sustituye las imágenes manteniendo sus nombres. Para añadir páginas, agrega su ruta a la lista CONTENT_PAGES en assets/app.js. La navegación, las miniaturas y las hojas se ajustan a la cantidad de páginas, tanto par como impar.
 
@@ -30,4 +30,5 @@ Páginas proporcionadas por el usuario. Se conserva el diseño de la revista ori
 
 La página 6 contiene «Not Everything Is as It Seems», de Jhon Gómez. El texto corregido y editable está en `content/not-everything-is-as-it-seems.md`; el diseño vectorial está en `assets/pages/7.svg`. Si se edita el relato, también debe actualizarse su diseño SVG.
 
-Las referencias (`assets/pages/6.webp`) se mantienen siempre al final mediante REFERENCES_PAGE. Añade nuevas páginas de contenido a CONTENT_PAGES; el orden de lectura no depende de los nombres de archivo.
+Las referencias (`assets/pages/references.svg`) se mantienen siempre al final mediante REFERENCES_PAGE. Añade nuevas páginas de contenido a CONTENT_PAGES; el orden de lectura no depende de los nombres de archivo.
+\nLa bibliografía está en `content/references.json`. Su diseño en `assets/pages/references.svg` mantiene siete entradas en orden alfabético. `references.html` ofrece una versión de texto con enlaces; se abre desde «Abrir enlaces de las fuentes» en la vista ampliada. Mantén actualizados estos archivos cuando cambien las referencias.\n
